@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talyvn — Brand Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Aktiv+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --font-display: 'Plus Jakarta Sans', 'Aktiv Grotesk', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-brand: 'Aktiv Grotesk', 'Plus Jakarta Sans', sans-serif;
+    --radius-xl: 28px;
+    --radius-lg: 22px;
+    --radius-md: 14px;
+    --radius-sm: 8px;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: 0.4s var(--ease);
+
+    /* Brand Colors */
+    --brand-blue: #075BEC;
+    --brand-teal: #00EFD3;
+    --brand-cyan: #00BBD2;
+    --brand-purple: #8A3AFB;
+  }
+
+  [data-theme="dark"] {
+    --bg-page: #060609;
+    --bg-elevated: #0d0d14;
+    --bg-card: rgba(255,255,255,0.025);
+    --bg-card-hover: rgba(255,255,255,0.05);
+    --bg-showcase: #000000;
+    --bg-showcase-alt: #0a0a0f;
+    --border: rgba(255,255,255,0.06);
+    --border-hover: rgba(255,255,255,0.12);
+    --text-1: #eaeef6;
+    --text-2: rgba(234,238,246,0.6);
+    --text-3: rgba(234,238,246,0.35);
+    --accent-glow: rgba(0,239,211,0.08);
+    --accent-glow-blue: rgba(7,91,236,0.1);
+    --accent-glow-purple: rgba(138,58,251,0.1);
+    --shadow-card: 0 2px 24px rgba(0,0,0,0.3);
+    --shadow-logo: drop-shadow(0 12px 40px rgba(0,0,0,0.5));
+    --toggle-bg: rgba(255,255,255,0.08);
+    --toggle-knob: #eaeef6;
+    --code-bg: rgba(255,255,255,0.06);
+    --checker-a: #111;
+    --checker-b: #1a1a1a;
+  }
+
+  [data-theme="light"] {
+    --bg-page: #f5f6fa;
+    --bg-elevated: #ffffff;
+    --bg-card: rgba(0,0,0,0.025);
+    --bg-card-hover: rgba(0,0,0,0.05);
+    --bg-showcase: #ffffff;
+    --bg-showcase-alt: #f0f1f5;
+    --border: rgba(0,0,0,0.08);
+    --border-hover: rgba(0,0,0,0.15);
+    --text-1: #111127;
+    --text-2: rgba(17,17,39,0.58);
+    --text-3: rgba(17,17,39,0.35);
+    --accent-glow: rgba(0,239,211,0.1);
+    --accent-glow-blue: rgba(7,91,236,0.08);
+    --accent-glow-purple: rgba(138,58,251,0.08);
+    --shadow-card: 0 2px 20px rgba(0,0,0,0.06);
+    --shadow-logo: drop-shadow(0 8px 24px rgba(0,0,0,0.12));
+    --toggle-bg: rgba(0,0,0,0.08);
+    --toggle-knob: #111127;
+    --code-bg: rgba(0,0,0,0.05);
+    --checker-a: #e8e8e8;
+    --checker-b: #f5f5f5;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg-page);
+    font-family: var(--font-body);
+    color: var(--text-1);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background var(--transition), color var(--transition);
+    line-height: 1.65;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 56px 32px 120px; }
+
+  /* ── Theme Toggle ── */
+  .theme-toggle {
+    position: fixed; top: 20px; right: 20px; z-index: 1000;
+    display: flex; align-items: center; gap: 10px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    border-radius: 100px; padding: 6px 16px 6px 12px;
+    cursor: pointer; user-select: none;
+    transition: all var(--transition);
+    box-shadow: var(--shadow-card);
+  }
+  .theme-toggle:hover { border-color: var(--border-hover); }
+  .toggle-track { width: 40px; height: 22px; background: var(--toggle-bg); border-radius: 100px; position: relative; transition: background var(--transition); }
+  .toggle-knob { width: 16px; height: 16px; background: var(--toggle-knob); border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: transform var(--transition), background var(--transition); }
+  [data-theme="light"] .toggle-knob { transform: translateX(18px); }
+  .toggle-icon { font-size: 14px; line-height: 1; }
+  .toggle-label { font-family: var(--font-display); font-size: 10px; font-weight: 600; letter-spacing: 1.8px; text-transform: uppercase; color: var(--text-3); }
+
+  /* ── Header ── */
+  .hero { text-align: center; margin-bottom: 80px; padding-top: 40px; animation: fadeUp 0.9s ease-out both; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-display); font-size: 10px; font-weight: 700;
+    letter-spacing: 3.5px; text-transform: uppercase;
+    color: var(--brand-teal); border: 1px solid var(--border);
+    border-radius: 100px; padding: 8px 24px;
+    margin-bottom: 32px; background: var(--bg-card);
+  }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--brand-teal); animation: pulse 2s ease-in-out infinite; }
+  .hero h1 {
+    font-family: var(--font-brand);
+    font-size: clamp(56px, 9vw, 96px);
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 20px;
+    color: var(--text-1);
+    transition: color var(--transition);
+  }
+  .hero-sub { font-size: 17px; color: var(--text-2); max-width: 580px; margin: 0 auto; line-height: 1.8; }
+  .hero-divider { width: 56px; height: 2px; background: linear-gradient(90deg, var(--brand-blue), var(--brand-purple)); border-radius: 2px; margin: 48px auto 0; opacity: 0.4; }
+
+  /* ── Sections ── */
+  .section { margin-bottom: 88px; }
+  .section-head { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+  .section-num {
+    font-family: var(--font-display); font-size: 11px; font-weight: 700;
+    color: var(--brand-teal); background: var(--accent-glow);
+    border-radius: 8px; padding: 4px 12px; letter-spacing: 1.2px;
+  }
+  .section h2 { font-family: var(--font-display); font-size: 26px; font-weight: 800; letter-spacing: -0.5px; color: var(--text-1); transition: color var(--transition); }
+  .section-desc { font-size: 15px; color: var(--text-2); line-height: 1.8; margin-bottom: 36px; max-width: 660px; }
+
+  /* ── Logo Display Cards ── */
+  .logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .logo-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--bg-card);
+    transition: transform 0.5s var(--ease), border-color var(--transition), box-shadow var(--transition);
+  }
+  .logo-card:hover { transform: translateY(-3px); border-color: var(--border-hover); box-shadow: var(--shadow-card); }
+  .logo-display {
+    display: flex; align-items: center; justify-content: center;
+    padding: 48px 24px; position: relative;
+    transition: background var(--transition);
+    overflow: hidden;
+  }
+  .logo-display.dark-bg { background: #000; }
+  .logo-display.light-bg { background: #fff; }
+  .logo-display.checker-bg {
+    background-image: linear-gradient(45deg, var(--checker-a) 25%, transparent 25%),
+                       linear-gradient(-45deg, var(--checker-a) 25%, transparent 25%),
+                       linear-gradient(45deg, transparent 75%, var(--checker-a) 75%),
+                       linear-gradient(-45deg, transparent 75%, var(--checker-a) 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+    background-color: var(--checker-b);
+  }
+  .logo-display.gradient-bg {
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a1a2e 100%);
+  }
+  .logo-display img {
+    max-width: 160px; max-height: 160px; object-fit: contain;
+    filter: var(--shadow-logo);
+    transition: transform 0.5s var(--ease), filter 0.4s ease;
+    position: relative; z-index: 1;
+  }
+  .logo-card:hover .logo-display img { transform: scale(1.06); }
+  .logo-display .inline-svg { width: 160px; height: auto; filter: var(--shadow-logo); transition: transform 0.5s var(--ease); position: relative; z-index: 1; }
+  .logo-card:hover .logo-display .inline-svg { transform: scale(1.06); }
+  .logo-meta { padding: 22px 24px 26px; }
+  /* ── Download Button ── */
+  .dl-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-display); font-size: 11px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--brand-teal); background: var(--accent-glow);
+    border: 1px solid rgba(0,239,211,0.15);
+    border-radius: 8px; padding: 7px 14px;
+    text-decoration: none; cursor: pointer;
+    transition: all var(--transition);
+    margin-top: 12px;
+  }
+  .dl-btn:hover { background: rgba(0,239,211,0.18); border-color: var(--brand-teal); transform: translateY(-1px); }
+  .dl-btn svg { width: 14px; height: 14px; stroke: var(--brand-teal); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .dl-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+
+  .logo-meta .tag {
+    font-family: var(--font-display); font-size: 9px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    display: inline-block; margin-bottom: 6px;
+    padding: 3px 9px; border-radius: 5px;
+  }
+  .tag-format { background: var(--accent-glow-blue); color: var(--brand-blue); }
+  .tag-size { background: var(--accent-glow-purple); color: var(--brand-purple); }
+  .tag-svg { background: var(--accent-glow); color: var(--brand-teal); }
+  .logo-meta h3 { font-family: var(--font-display); font-size: 15px; font-weight: 700; margin-bottom: 4px; color: var(--text-1); transition: color var(--transition); }
+  .logo-meta p { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+  .logo-meta .dimensions { font-family: 'SFMono-Regular','Consolas','Menlo',monospace; font-size: 11px; color: var(--text-3); margin-top: 8px; background: var(--code-bg); display: inline-block; padding: 3px 10px; border-radius: 6px; }
+
+  /* ── Full-Width SVG Section ── */
+  .svg-showcase {
+    border: 1px solid var(--border); border-radius: var(--radius-xl);
+    overflow: hidden; background: var(--bg-card);
+    transition: all var(--transition);
+  }
+  .svg-display {
+    display: flex; align-items: center; justify-content: center;
+    padding: 64px 32px; gap: 64px;
+    flex-wrap: wrap;
+    transition: background var(--transition);
+  }
+  .svg-display.on-dark { background: #000; }
+  .svg-display.on-light { background: #fff; }
+  .svg-panel { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .svg-panel svg { width: 180px; height: auto; filter: var(--shadow-logo); transition: transform 0.5s var(--ease); }
+  .svg-panel:hover svg { transform: scale(1.05); }
+  .svg-panel .svg-label { font-family: var(--font-display); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); }
+  .svg-footer { padding: 20px 28px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; transition: border-color var(--transition); }
+  .svg-footer .sf-label { font-family: var(--font-display); font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); }
+
+  /* ── Color Palette ── */
+  .palette-section { display: flex; flex-direction: column; gap: 32px; }
+  .palette-group-label { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 4px; }
+  .color-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .color-card {
+    border: 1px solid var(--border); border-radius: var(--radius-md);
+    overflow: hidden; background: var(--bg-card);
+    cursor: pointer; position: relative;
+    transition: all var(--transition);
+  }
+  .color-card:hover { border-color: var(--border-hover); transform: translateY(-2px); box-shadow: var(--shadow-card); }
+  .color-swatch { height: 80px; transition: all var(--transition); }
+  .color-info { padding: 14px 16px; }
+  .color-name { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--text-1); margin-bottom: 2px; transition: color var(--transition); }
+  .color-hex { font-family: 'SFMono-Regular','Consolas',monospace; font-size: 12px; color: var(--text-3); transition: color var(--transition); }
+  .color-role { font-size: 11px; color: var(--text-3); margin-top: 4px; }
+  .copied-toast {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-display); font-size: 11px; font-weight: 700;
+    color: #fff; background: rgba(0,0,0,0.8);
+    padding: 6px 16px; border-radius: 8px;
+    opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+    backdrop-filter: blur(8px);
+  }
+  .copied-toast.show { opacity: 1; }
+
+  /* ── Gradient Bar ── */
+  .gradient-bar {
+    height: 64px; border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    overflow: hidden; margin-top: 8px;
+  }
+
+  /* ── Typography ── */
+  .type-showcase {
+    border: 1px solid var(--border); border-radius: var(--radius-xl);
+    overflow: hidden; background: var(--bg-card); transition: all var(--transition);
+  }
+  .type-header {
+    padding: 40px 40px 32px;
+    border-bottom: 1px solid var(--border);
+    transition: border-color var(--transition);
+  }
+  .type-font-name { font-family: var(--font-brand); font-size: 36px; font-weight: 700; color: var(--text-1); margin-bottom: 4px; transition: color var(--transition); }
+  .type-font-role { font-size: 14px; color: var(--text-3); font-family: var(--font-display); letter-spacing: 0.5px; }
+  .type-body { padding: 32px 40px 40px; }
+  .type-specimen { margin-bottom: 28px; }
+  .type-specimen-label { font-family: var(--font-display); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 10px; }
+  .type-specimen-content { font-family: var(--font-brand); color: var(--text-1); transition: color var(--transition); }
+  .type-weights { display: flex; flex-wrap: wrap; gap: 32px; }
+  .type-weight-item { display: flex; flex-direction: column; gap: 4px; }
+  .type-weight-sample { font-family: var(--font-brand); font-size: 32px; line-height: 1.2; color: var(--text-1); transition: color var(--transition); }
+  .type-weight-label { font-family: var(--font-display); font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); }
+  .type-pangram { font-family: var(--font-brand); font-size: 18px; line-height: 1.7; color: var(--text-2); margin-top: 12px; transition: color var(--transition); }
+
+  /* ── Brand Wordmark ── */
+  .wordmark-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    margin-top: 24px;
+  }
+  @media (max-width: 700px) { .wordmark-row { grid-template-columns: 1fr; } }
+  .wordmark-card {
+    border: 1px solid var(--border); border-radius: var(--radius-lg);
+    overflow: hidden; transition: all var(--transition);
+  }
+  .wordmark-display {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px; padding: 48px 24px;
+    transition: background var(--transition);
+  }
+  .wordmark-display.on-dark { background: #000; }
+  .wordmark-display.on-light { background: #fff; }
+  .wordmark-display img { width: 52px; height: 52px; object-fit: contain; }
+  .wordmark-display .wm-text {
+    font-family: var(--font-brand);
+    font-size: 38px; font-weight: 700; letter-spacing: -1px;
+  }
+  .wordmark-display.on-dark .wm-text { color: #fff; }
+  .wordmark-display.on-light .wm-text { color: #111; }
+  .wordmark-footer { padding: 14px 24px; border-top: 1px solid var(--border); transition: border-color var(--transition); }
+  .wordmark-footer span { font-family: var(--font-display); font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); }
+
+  /* ── Spacing Guide ── */
+  .spacing-card {
+    border: 1px solid var(--border); border-radius: var(--radius-xl);
+    overflow: hidden; background: var(--bg-card);
+    transition: all var(--transition);
+  }
+  .spacing-display {
+    display: flex; align-items: center; justify-content: center;
+    padding: 56px 32px;
+    background: var(--bg-showcase);
+    transition: background var(--transition);
+    position: relative;
+  }
+  .spacing-logo-wrapper {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .spacing-logo-wrapper img { width: 120px; height: 120px; object-fit: contain; position: relative; z-index: 2; }
+  .spacing-zone {
+    position: absolute; z-index: 1;
+    border: 1.5px dashed var(--brand-teal);
+    border-radius: 4px;
+    opacity: 0.5;
+  }
+  .spacing-zone.inner { inset: -20px; }
+  .spacing-zone.outer { inset: -48px; }
+  .spacing-marker {
+    position: absolute; z-index: 3;
+    font-family: var(--font-display); font-size: 9px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--brand-teal); background: var(--bg-showcase);
+    padding: 2px 6px; border-radius: 3px;
+  }
+  .spacing-marker.top { top: -48px; left: 50%; transform: translateX(-50%); }
+  .spacing-marker.right { right: -48px; top: 50%; transform: translateY(-50%); }
+  .spacing-footer { padding: 20px 28px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; transition: border-color var(--transition); }
+  .spacing-footer span { font-family: var(--font-display); font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); }
+
+  /* ── Footer ── */
+  .page-footer {
+    text-align: center; padding-top: 56px;
+    border-top: 1px solid var(--border);
+    transition: border-color var(--transition);
+  }
+  .page-footer p { font-size: 13px; color: var(--text-3); }
+  .page-footer .brand-accent {
+    font-family: var(--font-brand); font-weight: 700;
+    background: linear-gradient(135deg, var(--brand-blue), var(--brand-teal));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .anim { animation: fadeUp 0.8s ease-out both; }
+  .anim-d1 { animation-delay: 0.08s; }
+  .anim-d2 { animation-delay: 0.16s; }
+  .anim-d3 { animation-delay: 0.24s; }
+  .anim-d4 { animation-delay: 0.32s; }
+  .anim-d5 { animation-delay: 0.40s; }
+  .anim-d6 { animation-delay: 0.48s; }
+
+  @media (max-width: 600px) {
+    .container { padding: 32px 18px 80px; }
+    .hero h1 { letter-spacing: -1px; }
+    .svg-display { padding: 40px 20px; gap: 40px; }
+    .type-header, .type-body { padding-left: 24px; padding-right: 24px; }
+    .wordmark-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Theme Toggle -->
+<div class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+  <div class="toggle-track"><div class="toggle-knob"></div></div>
+  <span class="toggle-icon" id="themeIcon">🌙</span>
+  <span class="toggle-label" id="themeLabel">Dark</span>
+</div>
+
+<div class="container">
+
+  <!-- ═══ Hero ═══ -->
+  <div class="hero anim">
+    <div class="hero-badge">Brand Reference · 2026</div>
+    <h1>Talyvn</h1>
+    <p class="hero-sub">Workforce management, redefined. The Talyvn mark is built from three geometric primitives that interlock to form an abstract lowercase "t" — conveying precision, flow, and modern energy.</p>
+    <div class="hero-divider"></div>
+  </div>
+
+  <!-- ═══ 01 · Logo Mark — All Sizes ═══ -->
+  <div class="section anim anim-d1">
+    <div class="section-head"><span class="section-num">01</span><h2>Logo Mark</h2></div>
+    <p class="section-desc">The primary logomark in PNG format at three export sizes. Each is optimized for its use case — from favicons and app icons to print and large-format displays.</p>
+
+    <div class="logo-grid">
+
+      <div class="logo-card">
+        <div class="logo-display dark-bg">
+          <img src="512x512.png" alt="Talyvn Logo 512">
+        </div>
+        <div class="logo-meta">
+          <span class="tag tag-format">PNG</span> <span class="tag tag-size">512px</span>
+          <h3>Standard Icon</h3>
+          <p>App icons, favicons, thumbnails, and social avatars.</p>
+          <div class="dimensions">512 × 512 px</div>
+          <a class="dl-btn" href="512x512.png" download="talyvn-logo-512.png"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</a>
+        </div>
+      </div>
+
+      <div class="logo-card">
+        <div class="logo-display dark-bg">
+          <img src="1024x1024.png" alt="Talyvn Logo 1024">
+        </div>
+        <div class="logo-meta">
+          <span class="tag tag-format">PNG</span> <span class="tag tag-size">1024px</span>
+          <h3>High-Res</h3>
+          <p>Hero sections, marketing assets, presentations, and retina displays.</p>
+          <div class="dimensions">1024 × 1024 px</div>
+          <a class="dl-btn" href="1024x1024.png" download="talyvn-logo-1024.png"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</a>
+        </div>
+      </div>
+
+      <div class="logo-card">
+        <div class="logo-display dark-bg">
+          <img src="3200x3200.png" alt="Talyvn Logo 3200">
+        </div>
+        <div class="logo-meta">
+          <span class="tag tag-format">PNG</span> <span class="tag tag-size">3200px</span>
+          <h3>Print-Ready</h3>
+          <p>Large-format printing, banners, merchandise, and editorial use.</p>
+          <div class="dimensions">3200 × 3200 px</div>
+          <a class="dl-btn" href="3200x3200.png" download="talyvn-logo-3200.png"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ 02 · SVG Vector ═══ -->
+  <div class="section anim anim-d2">
+    <div class="section-head"><span class="section-num">02</span><h2>SVG Vector</h2></div>
+    <p class="section-desc">The scalable vector source — infinitely resizable with zero quality loss. Use for all screen rendering, animations, and any context where crisp edges matter.</p>
+
+    <div class="svg-showcase">
+      <div class="svg-display on-dark">
+        <div class="svg-panel">
+          <svg width="590" height="966" viewBox="0 0 590 966" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 539V259C12 192 35 134.5 83.5 87.5001C127.3 45.6001 186 21.0001 245.5 11.2001C262.7 8.40008 283.5 6.20008 301 6.50008V274H582C582 274 582.3 292 582 332.5C580.9 392.5 560.8 442.3 516.7 483.5C478.8 519 433.9 534.9 382.9 538.7C369 539.7 355.6 539.6 341.7 539.5L301 539H12Z" fill="#075BEC"/>
+<path d="M301 274H582C582 274 582.3 292 582 332.5C580.9 392.5 560.8 442.3 516.7 483.5C478.8 519 433.9 534.9 382.9 538.7C369 539.7 355.6 539.6 341.7 539.5L301 539V274Z" fill="#00EFD3"/>
+<path d="M12 539C12.9 528 19.3 509.5 22.7 498.7C39.9 443.8 73.3 390.4 116.2 351.8C156.9 315.3 206.5 290.2 260 279.2C270.5 276.9 290.4 273.4 301 274V539H12Z" fill="#00BBD2"/>
+<path d="M11.9999 539H301C301 558.5 301.8 578 302.4 597.2C302.6 625.4 313.8 652.1 339.7 666.3C369.7 682.7 397.8 694.3 423.9 718.3C475.9 766 485.2 848.7 435.8 901.9C404.7 935.5 357.7 947.9 313.3 949.9C230.8 952.5 153.2 922.8 92.3999 867C72.9999 849 56.3999 828.1 43.2999 805C24.5999 771.5 13.9999 734 12.3999 695.5C11.6999 682.3 11.9999 665.6 11.9999 652.3V539Z" fill="#8A3AFB"/>
+</svg>
+          <span class="svg-label">On Dark</span>
+        </div>
+      </div>
+      <div class="svg-display on-light">
+        <div class="svg-panel">
+          <svg width="590" height="966" viewBox="0 0 590 966" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 539V259C12 192 35 134.5 83.5 87.5001C127.3 45.6001 186 21.0001 245.5 11.2001C262.7 8.40008 283.5 6.20008 301 6.50008V274H582C582 274 582.3 292 582 332.5C580.9 392.5 560.8 442.3 516.7 483.5C478.8 519 433.9 534.9 382.9 538.7C369 539.7 355.6 539.6 341.7 539.5L301 539H12Z" fill="#075BEC"/>
+<path d="M301 274H582C582 274 582.3 292 582 332.5C580.9 392.5 560.8 442.3 516.7 483.5C478.8 519 433.9 534.9 382.9 538.7C369 539.7 355.6 539.6 341.7 539.5L301 539V274Z" fill="#00EFD3"/>
+<path d="M12 539C12.9 528 19.3 509.5 22.7 498.7C39.9 443.8 73.3 390.4 116.2 351.8C156.9 315.3 206.5 290.2 260 279.2C270.5 276.9 290.4 273.4 301 274V539H12Z" fill="#00BBD2"/>
+<path d="M11.9999 539H301C301 558.5 301.8 578 302.4 597.2C302.6 625.4 313.8 652.1 339.7 666.3C369.7 682.7 397.8 694.3 423.9 718.3C475.9 766 485.2 848.7 435.8 901.9C404.7 935.5 357.7 947.9 313.3 949.9C230.8 952.5 153.2 922.8 92.3999 867C72.9999 849 56.3999 828.1 43.2999 805C24.5999 771.5 13.9999 734 12.3999 695.5C11.6999 682.3 11.9999 665.6 11.9999 652.3V539Z" fill="#8A3AFB"/>
+</svg>
+          <span class="svg-label">On Light</span>
+        </div>
+      </div>
+      <div class="svg-footer">
+        <span class="sf-label">Vector Source</span>
+        <a class="dl-btn" href="talyvn_logo_fixed_1.svg" download="talyvn-logo.svg"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download SVG</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 03 · Background Contexts ═══ -->
+  <div class="section anim anim-d3">
+    <div class="section-head"><span class="section-num">03</span><h2>Background Contexts</h2></div>
+    <p class="section-desc">How the logomark performs across different backgrounds — ensuring legibility and impact in every context.</p>
+
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="logo-display dark-bg">
+          <img src="1024x1024.png" alt="On Black">
+        </div>
+        <div class="logo-meta"><h3>On Black</h3><p>Maximum vibrancy. Primary digital context.</p></div>
+      </div>
+      <div class="logo-card">
+        <div class="logo-display light-bg">
+          <img src="1024x1024.png" alt="On White">
+        </div>
+        <div class="logo-meta"><h3>On White</h3><p>Clean and professional. Print and documentation.</p></div>
+      </div>
+      <div class="logo-card">
+        <div class="logo-display checker-bg">
+          <img src="1024x1024.png" alt="Transparency">
+        </div>
+        <div class="logo-meta"><h3>Transparency Check</h3><p>Confirming the alpha channel — no background artifacts.</p></div>
+      </div>
+      <div class="logo-card">
+        <div class="logo-display gradient-bg">
+          <img src="1024x1024.png" alt="On Gradient">
+        </div>
+        <div class="logo-meta"><h3>On Gradient</h3><p>Premium hero contexts and immersive presentations.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 04 · Brand Wordmark ═══ -->
+  <div class="section anim anim-d4">
+    <div class="section-head"><span class="section-num">04</span><h2>Brand Wordmark</h2></div>
+    <p class="section-desc">The logomark paired with the Talyvn wordmark. Use Aktiv Grotesk Medium for the wordmark — consistent with the brand's geometric, clean identity.</p>
+
+    <div class="wordmark-row">
+      <div class="wordmark-card">
+        <div class="wordmark-display on-dark">
+          <img src="512x512.png" alt="Talyvn">
+          <span class="wm-text">Talyvn</span>
+        </div>
+        <div class="wordmark-footer"><span>On Dark</span></div>
+      </div>
+      <div class="wordmark-card">
+        <div class="wordmark-display on-light">
+          <img src="512x512.png" alt="Talyvn">
+          <span class="wm-text">Talyvn</span>
+        </div>
+        <div class="wordmark-footer"><span>On Light</span></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══ 05 · Color Palette ═══ -->
+  <div class="section anim anim-d5">
+    <div class="section-head"><span class="section-num">05</span><h2>Color Palette</h2></div>
+    <p class="section-desc">Four brand colors extracted from the logomark. Click any swatch to copy its hex value to clipboard.</p>
+
+    <div class="palette-section">
+
+      <div>
+        <div class="palette-group-label">Primary Brand Colors</div>
+        <div class="color-cards">
+          <div class="color-card" onclick="copyHex(this,'#075BEC')">
+            <div class="color-swatch" style="background:#075BEC;"></div>
+            <div class="color-info">
+              <div class="color-name">Royal Blue</div>
+              <div class="color-hex">#075BEC</div>
+              <div class="color-role">Top-left quadrant · Primary CTA</div>
+            </div>
+            <span class="copied-toast">Copied!</span>
+          </div>
+          <div class="color-card" onclick="copyHex(this,'#00EFD3')">
+            <div class="color-swatch" style="background:#00EFD3;"></div>
+            <div class="color-info">
+              <div class="color-name">Mint Teal</div>
+              <div class="color-hex">#00EFD3</div>
+              <div class="color-role">Top-right leaf · Accent highlights</div>
+            </div>
+            <span class="copied-toast">Copied!</span>
+          </div>
+          <div class="color-card" onclick="copyHex(this,'#00BBD2')">
+            <div class="color-swatch" style="background:#00BBD2;"></div>
+            <div class="color-info">
+              <div class="color-name">Ocean Cyan</div>
+              <div class="color-hex">#00BBD2</div>
+              <div class="color-role">Overlap intersection · Midtones</div>
+            </div>
+            <span class="copied-toast">Copied!</span>
+          </div>
+          <div class="color-card" onclick="copyHex(this,'#8A3AFB')">
+            <div class="color-swatch" style="background:#8A3AFB;"></div>
+            <div class="color-info">
+              <div class="color-name">Electric Violet</div>
+              <div class="color-hex">#8A3AFB</div>
+              <div class="color-role">Bottom bowl · Depth & energy</div>
+            </div>
+            <span class="copied-toast">Copied!</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="palette-group-label">Extended UI Palette</div>
+        <div class="color-cards">
+          <div class="color-card" onclick="copyHex(this,'#0a0a0f')">
+            <div class="color-swatch" style="background:#0a0a0f;"></div>
+            <div class="color-info">
+              <div class="color-name">Void Black</div>
+              <div class="color-hex">#0A0A0F</div>
+              <div class="color-role">Dark mode backgrounds</div>
+            </div>
+            <span class="copied-toast">Copied!</span>
+          </div>
+          <div class="color-card" onclick="copyHex(this,'#eaeef6')">
+            <div class="color-swatch" style="background:#eaeef6; border-bottom: 1px solid var(--border);"></div>
+            <div class="color-info">
+              <div class="color-name">Cloud White</div>
+              <div class="color-hex">#EAEEF6</div>
+              <div class="color-role">Dark mode text · Light backgrounds</div>
+            </div>
+            <span class="copied-toast">Copied!</span>
+          </div>
+          <div class="color-card" onclick="copyHex(this,'#111127')">
+            <div class="color-swatch" style="background:#111127;"></div>
+            <div class="color-info">
+              <div class="color-name">Deep Navy</div>
+              <div class="color-hex">#111127</div>
+              <div class="color-role">Light mode text</div>
+            </div>
+            <span class="copied-toast">Copied!</span>
+          </div>
+          <div class="color-card" onclick="copyHex(this,'#f5f6fa')">
+            <div class="color-swatch" style="background:#f5f6fa; border-bottom: 1px solid var(--border);"></div>
+            <div class="color-info">
+              <div class="color-name">Snow</div>
+              <div class="color-hex">#F5F6FA</div>
+              <div class="color-role">Light mode backgrounds</div>
+            </div>
+            <span class="copied-toast">Copied!</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="palette-group-label">Brand Gradient</div>
+        <div class="gradient-bar" style="background: linear-gradient(90deg, #075BEC 0%, #00BBD2 33%, #00EFD3 55%, #8A3AFB 100%);"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ 06 · Typography ═══ -->
+  <div class="section anim anim-d6">
+    <div class="section-head"><span class="section-num">06</span><h2>Typography</h2></div>
+    <p class="section-desc">Aktiv Grotesk Medium — the brand typeface. A geometric sans-serif with clean proportions and excellent readability across all sizes.</p>
+
+    <div class="type-showcase">
+      <div class="type-header">
+        <div class="type-font-name">Aktiv Grotesk</div>
+        <div class="type-font-role">Brand Typeface · Medium Weight</div>
+      </div>
+      <div class="type-body">
+
+        <div class="type-specimen">
+          <div class="type-specimen-label">Alphabet</div>
+          <div class="type-specimen-content" style="font-size: 22px; font-weight: 500; letter-spacing: 1px; line-height: 1.8;">
+            ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+            abcdefghijklmnopqrstuvwxyz<br>
+            1234567890!@#$%^&amp;*()
+          </div>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-specimen-label">Weight Scale</div>
+          <div class="type-weights">
+            <div class="type-weight-item">
+              <div class="type-weight-sample" style="font-weight: 400;">Aa</div>
+              <div class="type-weight-label">Regular · 400</div>
+            </div>
+            <div class="type-weight-item">
+              <div class="type-weight-sample" style="font-weight: 500;">Aa</div>
+              <div class="type-weight-label">Medium · 500</div>
+            </div>
+            <div class="type-weight-item">
+              <div class="type-weight-sample" style="font-weight: 700;">Aa</div>
+              <div class="type-weight-label">Bold · 700</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-specimen-label">Brand Application</div>
+          <div class="type-specimen-content" style="font-size: 48px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 12px;">
+            Talyvn
+          </div>
+          <div class="type-specimen-content" style="font-size: 14px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--text-3);">
+            Workforce Management Platform
+          </div>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-specimen-label">Body Text Sample</div>
+          <div class="type-pangram">
+            The quick brown fox jumps over the lazy dog. Talyvn empowers distributed teams with intelligent time tracking, activity monitoring, and payroll-ready reporting — all from a single dashboard designed for clarity and speed.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 07 · Spacing Guide ═══ -->
+  <div class="section anim">
+    <div class="section-head"><span class="section-num">07</span><h2>Clear Space</h2></div>
+    <p class="section-desc">Maintain minimum clear space around the logomark equal to the height of the "t" crossbar. This ensures the mark breathes and retains impact in any layout.</p>
+
+    <div class="spacing-card">
+      <div class="spacing-display">
+        <div class="spacing-logo-wrapper">
+          <img src="1024x1024.png" alt="Spacing">
+          <div class="spacing-zone inner"></div>
+          <div class="spacing-zone outer"></div>
+          <span class="spacing-marker top">1×</span>
+          <span class="spacing-marker right">1×</span>
+        </div>
+      </div>
+      <div class="spacing-footer">
+        <span>Minimum Clear Space</span>
+        <span>1× = crossbar height</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Footer ═══ -->
+  <div class="page-footer">
+    <p><span class="brand-accent">Talyvn</span> &nbsp;·&nbsp; Brand Reference &nbsp;·&nbsp; 2026</p>
+  </div>
+
+</div>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const label = document.getElementById('themeLabel');
+    const icon = document.getElementById('themeIcon');
+    if (html.getAttribute('data-theme') === 'dark') {
+      html.setAttribute('data-theme', 'light');
+      label.textContent = 'Light';
+      icon.textContent = '☀️';
+    } else {
+      html.setAttribute('data-theme', 'dark');
+      label.textContent = 'Dark';
+      icon.textContent = '🌙';
+    }
+  }
+  function copyHex(el, hex) {
+    navigator.clipboard.writeText(hex).catch(() => {});
+    const toast = el.querySelector('.copied-toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 1200);
+  }
+
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.anim').forEach(el => {
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
